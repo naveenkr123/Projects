@@ -26,7 +26,7 @@ void encrypt(char filename[50]){
     
     //ENCRYPTING FILE CONTENT!!
     FILE *fpw;
-    fpw=fopen("demo.txt","w");
+    fpw=fopen(filename,"w");
     if(fpw==NULL){
         printf("File not found!\n");
         exit(1);
@@ -54,7 +54,6 @@ void decrypt(char filename[50]){
     //DECRYPTION SALTING FILE CONTENT
     while(!feof(fpr)){
         read-=13;
-        //printf("%c",read);
         tempVar[index]=read;
         index++;
         read=fgetc(fpr);
@@ -63,7 +62,7 @@ void decrypt(char filename[50]){
     
     //DECRYPTING FILE CONTENT!!
     FILE *fpw;
-    fpw=fopen("demo.txt","w");
+    fpw=fopen(filename,"w");
     if(fpw==NULL){
         printf("File not found!\n");
         exit(1);
@@ -82,11 +81,11 @@ int main(){
     scanf("%d",&choice);
     switch(choice){
         case 1: printf("\nEnter the filename or filepath: ");
-        scanf("%s",&file);
+        scanf("%s",file);
         encrypt(file);
         break;
         case 2: printf("\nEnter the filename or filepath: ");
-        scanf("%s",&file);
+        scanf("%s",file);
         decrypt(file);
         break;
         case 3: exit(1);
