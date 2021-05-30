@@ -11,22 +11,71 @@ struct record{
     float balance;
 };
 
+//functions declaration
+void mainMenu();
+void MenuOrExit();
+void createAcc();
+void update();
+void delete();
+void list();
+void transactions();
+void transfer();
+void deposit();
+void deposit();
+void withdraw();
+void enquiry();
+
+int main(){
+    char username[10], password[10];
+    int choice;
+    system("cls");
+    printf("\n\t****************[ BANKING MANAGEMENT SYSTEM ]****************\n\n\n\n");
+    printf("\t\t\t   --- Login required ---\n\n");
+    printf("\t\tUsername: ");
+    scanf("%s",username);
+    printf("\t\tPassword: ");
+	scanf("%s",password);
+
+    if(strcmp(username,"naveen")==0 && strcmp(password,"abc123")==0){
+        printf("\n\n\t\tWelcome!");
+        mainMenu();
+    }
+    else{
+        printf("\n\n\t\tIncorrect login!");
+        retry:
+        printf("\n\t\tDo you want to try again?\n\t\t[1] --> Yes\n\t\t[0] --> No\n\n\t\tEnter here: ");
+        scanf("%d",&choice);
+        if(choice==1){
+            system("cls");
+            main();
+        }
+        else if(choice==0)
+        exit(1);
+        else{
+            printf("\n\t\tInvalid option!");
+            Sleep(2000);
+        }
+    }
+
+    return 0;
+}
+
 void mainMenu(){
     int choice;
     system("cls");
     printf("\n\t****************[ BANKING MANAGEMENT SYSTEM ]****************\n\n\n\n");
     printf("\tMAIN MENU");
     printf("\n\t-------------------------------------------------------------\n");
-    printf("\t[1] Register new account\n");
+    printf("\t[1] Create new account\n");
     printf("\t[2] Update existing account information\n");
     printf("\t[3] Transactions\n");
     printf("\t[4] Check your account details\n");
     printf("\t[5] Delete existing account\n");
     printf("\t[6] View client's list\n");
     printf("\t[7] Exit\n\n");
+
     printf("\tEnter choice here: ");
     scanf("%d",&choice);
-/*
     switch(choice){
         case 1:
             createAcc();
@@ -38,7 +87,7 @@ void mainMenu(){
             transactions();
             break;
         case 4:
-            search();
+            enquiry();
             break;
         case 5:
             delete();
@@ -53,7 +102,6 @@ void mainMenu(){
             Sleep(2000);
             mainMenu();
     }
-    */
 }
 
 void MenuOrExit(){
@@ -171,6 +219,43 @@ void update(){
     MenuOrExit();
 }
 
+void delete(){
+    system("cls");
+    struct record client;
+    int search, found=0, choice;
+    FILE *fp, *fp2;
+    fp=fopen("record.dat","r");
+    fp2=fopen("temp.dat","w");
+    if(fp==NULL){
+        printf("File not found!");
+        exit(1);
+    }
+    printf("\n\tDELETE ACCOUNT");
+    printf("\n\t_____________________________________________________________\n");
+    printf("\n\tEnter the account no.: ");
+    scanf("%d", &search);
+    while(!feof(fp)){
+        fscanf(fp,"%d %s %s %d %s %s %s %s %f",&client.accountNo, client.firstName, client.lastName, &client.age, client.phone, client.city, client.state, client.dob, &client.balance);
+        if(search==client.accountNo)
+            found=1;
+            //searched record will be skipped to write in temp file!
+        else
+            fprintf(fp2,"\n%d %s %s %d %s %s %s %s %.2f",client.accountNo, client.firstName, client.lastName, client.age, client.phone, client.city, client.state, client.dob, client.balance);
+    }
+    fclose(fp);
+    fclose(fp2);
+    remove("record.dat");
+    rename("temp.dat","record.dat");
+
+    if(!found){
+    printf("\n\tRecord not found!\n");
+    Sleep(2000);
+    }
+    else
+    printf("\n\tAccount deleted successfully!\n");
+    MenuOrExit();
+}
+
 void list(){
     struct record client;
     int choice, adminPIN;
@@ -183,12 +268,7 @@ void list(){
     }
     printf("\n\tVIEW CLIENT'S LIST");
     printf("\n\t_____________________________________________________________\n");
-    printf("\n\t< 1 >\tAdministration access\n\t< 2 >\tNormal access\n\t< 3 >\tExit\n");
-    printf("\n\tEnter here: ");
-    scanf("%d",&choice);
-
-    if(choice==1){      //Data for Admin
-    printf("\n\tEnter PIN for administrator access: ");
+    printf("\n\tEnter PIN for admin access: ");
     scanf("%d",&adminPIN);
         if(adminPIN==6666){
             system("cls");
@@ -198,26 +278,9 @@ void list(){
                 fscanf(fp,"%d %s %s %d %s %s %s %s %f",&client.accountNo, client.firstName, client.lastName, &client.age, client.phone, client.city, client.state, client.dob, &client.balance);
                 fprintf(stdout," %d %15s %-12s %d %15s %15s %-13s %s \t \033[1;32m $ %.2f\033[0m\n",client.accountNo , client.firstName, client.lastName, client.age, client.phone, client.city, client.state, client.dob, client.balance);
             }
-            MenuOrExit();
         }
-    }
-    else if(choice==2){
-        system("cls");
-        printf("\n ID \t\t Full Name  \t  Age\t\tAddress\n");
-        printf(" ----------------------------------------------------------------\n");
-        while(!feof(fp)){
-            fscanf(fp,"%d %s %s %d %s %s %s %s %f",&client.accountNo, client.firstName, client.lastName, &client.age, client.phone, client.city, client.state, client.dob, &client.balance);
-            fprintf(stdout," %d %15s %-12s %d %15s %-13s\n",client.accountNo , client.firstName, client.lastName, client.age, client.city, client.state);
-        }
-        MenuOrExit();
-    }
-    else if(choice==3)
-    exit(1);
-    else{
-        printf("\n\tInvalid option!\n");
-        Sleep(2000);
-        list();
-    }
+    fclose(fp);
+    MenuOrExit();
 }
 
 void transactions(){
@@ -225,7 +288,7 @@ void transactions(){
     int choice;
     printf("\n\tTRANSACTIONS");
     printf("\n\t_____________________________________________________________\n");
-    printf("\n\t< 1 >    Bank to Bank transfer\n\t< 2 >    Deposit amount    \n\t< 3 >    Withdraw amount\n\t< 4 >    Exit\n");
+    printf("\n\t< 1 >    Bank to Bank transfer\n\t< 2 >    Deposit amount    \n\t< 3 >    Withdraw amount\n\t< 4 >    Exit\n\n\n\tEnter here: ");
     scanf("%d",&choice);
     switch(choice){
         case 1:
@@ -330,10 +393,8 @@ void transfer(){
     else{
         printf("\n\t--------------------------------------------------------------");
         printf("\n\t              *** TRANSFERRED SUCCUSSFULLY ***                ");
-        printf("\n\t--------------------------------------------------------------");
+        printf("\n\t--------------------------------------------------------------\n");
     }
-
-
     MenuOrExit();
 }
 
@@ -361,7 +422,7 @@ void deposit(){
             printf("\n\tEnter amount to deposit : $ ");
             scanf("%f",&money);
             client.balance+=money;
-            printf("\t--------------------------------------------------------------");
+            printf("\t-------------------------------------------------------------");
             printf("\n\tNew Balance \t\t:\033[1;32m $ %.2f\033[0m\n", client.balance);
             fprintf(fp2,"\n%d %s %s %d %s %s %s %s %.2f",client.accountNo, client.firstName, client.lastName, client.age, client.phone, client.city, client.state, client.dob, client.balance);
         }
@@ -402,7 +463,7 @@ void withdraw(){
             printf("\n\tEnter amount to withdraw : $ ");
             scanf("%f",&money);
             client.balance-=money;
-            printf("\t--------------------------------------------------------------");
+            printf("\t-------------------------------------------------------------");
             printf("\n\tNew Balance \t\t :\033[1;32m $ %.2f\033[0m\n", client.balance);
             fprintf(fp2,"\n%d %s %s %d %s %s %s %s %.2f",client.accountNo, client.firstName, client.lastName, client.age, client.phone, client.city, client.state, client.dob, client.balance);
         }
@@ -443,7 +504,6 @@ void enquiry(){
             fprintf(stdout,"\n\tAccount no.  \t : %d\n\tName   \t\t : %s %s\n\tAge \t\t : %d\n\tPhone no.   \t : %s\n\tAddress  \t : %s, %s\n\tD.O.B \t\t : %s\n",client.accountNo , client.firstName, client.lastName, client.age, client.phone, client.city, client.state, client.dob);
             printf("\t-------------------------------------------------------------\n");
             printf("\tAvailible Balance :\033[1;32m $ %.2f\033[0m\n\n",client.balance);
-            MenuOrExit();
         }
     }
     if(!found){
@@ -451,41 +511,6 @@ void enquiry(){
         Sleep(3000);
         enquiry();
     }
-}
-
-int main(){
-    list();
-    /*
-    char username[10], password[10];
-    int choice;
-    system("cls");
-    printf("\t****************[ BANKING MANAGEMENT SYSTEM ]****************\n\n\n\n");
-    printf("\t\t\t   --- Login required ---\n\n");
-    printf("\t\tUsername: ");
-    scanf("%s",username);
-    printf("\t\tPassword: ");
-	scanf("%s",password);
-
-    if(strcmp(username,"naveen")==0 && strcmp(password,"abc123")==0){
-        printf("\n\n\t\tPassword matched\n\t\tWelcome!");
-    }
-    else{
-        printf("\n\n\t\tIncorrect login!");
-        retry:
-        printf("\n\t\tDo you want to try again?\n\t\t[1] --> Yes\n\t\t[0] --> No\n\n\t\tEnter here: ");
-        scanf("%d",&choice);
-        if(choice==1){
-            system("cls");
-            main();
-        }
-        else if(choice==0)
-        exit(1);
-        else{
-            printf("\n\t\tInvalid option!");
-            Sleep(2000);
-        }
-    }
-    */
-
-    return 0;
+    fclose(fp);
+    MenuOrExit();
 }
