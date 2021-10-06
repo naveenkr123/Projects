@@ -1,3 +1,5 @@
+// Using this program we can encrypt any text based file and make it unreadable.
+// Using the same program we can decrypt the same file and make it readable.
 #include<stdio.h>
 #include<string.h>
 #include<stdlib.h>
