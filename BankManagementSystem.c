@@ -1,3 +1,4 @@
+/*  In this program, we can create account, Update details, delete account, check client list, withdraw, deposit, transfer amount to another account.  */
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
