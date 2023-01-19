@@ -5,7 +5,7 @@
 #include<stdlib.h>
 
 void encrypt(char filename[50]){
-    //OPENING AND READING FILE CONTENT
+    //OPENING FILE AND READING CONTENT
     FILE *fpr;
     fpr=fopen(filename,"r");
     if(fpr==NULL){
@@ -16,7 +16,6 @@ void encrypt(char filename[50]){
     int index=0;
     char read=fgetc(fpr);
 
-    //ENCRYPTION SALTING FILE CONTENT
     while(!feof(fpr)){
         read+=13;
         //printf("%c",read);
@@ -42,7 +41,7 @@ void encrypt(char filename[50]){
 }
 
 void decrypt(char filename[50]){
-    //OPENING AND READING FILE CONTENT
+    //OPENING FILE AND READING CONTENT
     FILE *fpr;
     fpr=fopen(filename,"r");
     if(fpr==NULL){
@@ -53,7 +52,6 @@ void decrypt(char filename[50]){
     int index=0;
     char read=fgetc(fpr);
 
-    //DECRYPTION SALTING FILE CONTENT
     while(!feof(fpr)){
         read-=13;
         tempVar[index]=read;
