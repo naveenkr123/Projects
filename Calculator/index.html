@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <link rel="stylesheet" href="mystyle.css">
+</head>
+<body>
+    <section>
+        <div class="card">
+            <div class="screen">
+                <p id="result">0</p>
+            </div>
+            <div class="row">
+                <button class="blue" id="AC" onclick="allClear()">AC</button>
+                <button class="blue dlt" id="DEL" onclick="del()">DEL</button>
+                <button class="blue" id="%" onclick="calc('%')">%</button>
+                <button class="blue" id="/" onclick="calc('/')">/</button>
+            </div>
+            <div class="row">
+                <button id="7" onclick="calc(7)">7</button>
+                <button id="8" onclick="calc(8)">8</button>
+                <button id="9" onclick="calc(9)">9</button>
+                <button class="blue" id="*" onclick="calc('*')">*</button>
+            </div>
+            <div class="row">
+                <button id="4" onclick="calc(4)">4</button>
+                <button id="5" onclick="calc(5)">5</button>
+                <button id="6" onclick="calc(6)">6</button>
+                <button class="blue" id="-" onclick="calc('-')">-</button>
+            </div>
+            <div class="row">
+                <button id="1" onclick="calc(1)">1</button>
+                <button id="2" onclick="calc(2)">2</button>
+                <button id="3" onclick="calc(3)">3</button>
+                <button class="blue" id="+" onclick="calc('+')">+</button>
+            </div>
+            <div class="row">
+                <button id="00" onclick="calc('00')">00</button>
+                <button id="0" onclick="calc(0)">0</button>
+                <button id="." onclick="calc('.')">.</button>
+                <button class="blue" id="=" onclick="equal()">=</button>
+            </div>
+        </div>
+    </section>
+
+    <script src="myscript.js"></script>
+</body>
+</html>
