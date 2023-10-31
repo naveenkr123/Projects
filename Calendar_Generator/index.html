@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendar</title>
+    <link rel="stylesheet" href="mystyle.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+</head>
+<body>
+    <section>
+        <div class="input-div">
+            <div id="heading"><h1 id="logo">Calendar Generator</h1></div>
+
+                <div class="">
+                    <input type="text" id="enter-year" placeholder="Enter a year...">
+                    <select class="months-list" id="months">
+                        <option value="0">January</option>
+                        <option value="1">February</option>
+                        <option value="2">March</option>
+                        <option value="3">April</option>
+                        <option value="4">May</option>
+                        <option value="5">June</option>
+                        <option value="6">July</option>
+                        <option value="7">August</option>
+                        <option value="8">September</option>
+                        <option value="9">October</option>
+                        <option value="10">November</option>
+                        <option value="11">December</option>
+                    </select>
+                </div>
+                <button id="generate-button" onclick="generate()">Generate</button>
+
+        </div>
+
+        <div class="Calendar-div">
+            <div class="calendar">
+
+                <div class="change-month">
+                    <button class="control-button" onclick="prev()"><i class="material-icons">&#xe5cb;</i></button>
+                    <h1 id="month-name">September</h1>
+                    <button class="control-button" onclick="next()"><i class="material-icons">&#xe5cc;</i></button>
+                </div>
+
+                <div class="week">
+                    <div class="day red">S</div>
+                    <div class="day">M</div>
+                    <div class="day">T</div>
+                    <div class="day">W</div>
+                    <div class="day">T</div>
+                    <div class="day">F</div>
+                    <div class="day">S</div>
+                </div>
+
+                <div class="dates">
+                    <div class="date red" id="1">1</div>
+                    <div class="date" id="2">1</div>
+                    <div class="date" id="3">1</div>
+                    <div class="date" id="4">1</div>
+                    <div class="date" id="5">1</div>
+                    <div class="date" id="6">1</div>
+                    <div class="date" id="7">1</div>
+                    <div class="date red" id="8">1</div>
+                    <div class="date" id="9">1</div>
+                    <div class="date" id="10">1</div>
+                    <div class="date" id="11">1</div>
+                    <div class="date" id="12">1</div>
+                    <div class="date" id="13">1</div>
+                    <div class="date" id="14">1</div>
+                    <div class="date red" id="15">1</div>
+                    <div class="date" id="16">1</div>
+                    <div class="date" id="17">1</div>
+                    <div class="date" id="18">1</div>
+                    <div class="date" id="19">1</div>
+                    <div class="date" id="20">1</div>
+                    <div class="date" id="21">1</div>
+                    <div class="date red" id="22">1</div>
+                    <div class="date" id="23">1</div>
+                    <div class="date" id="24">1</div>
+                    <div class="date" id="25">1</div>
+                    <div class="date" id="26">1</div>
+                    <div class="date" id="27">1</div>
+                    <div class="date" id="28">1</div>
+                    <div class="date red" id="29">1</div>
+                    <div class="date" id="30">1</div>
+                    <div class="date" id="31">1</div>
+                    <div class="date" id="32">1</div>
+                    <div class="date" id="33">1</div>
+                    <div class="date" id="34">1</div>
+                    <div class="date" id="35">1</div>
+                    <div class="date red" id="36">1</div>
+                    <div class="date" id="37">1</div>
+                    <div class="date" id="38">1</div>
+                    <div class="date" id="39">1</div>
+                    <div class="date" id="40">1</div>
+                    <div class="date" id="41">1</div>
+                    <div class="date" id="42">1</div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <script src="myscript.js"></script>
+</body>
+</html>

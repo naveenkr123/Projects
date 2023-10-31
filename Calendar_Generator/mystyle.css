@@ -1,0 +1,125 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400&display=swap');
+
+body{
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+section{
+    width: 1000px;
+    margin: 0 auto;
+    padding: 30px 50px;
+    background-image: url('images/background.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+    img{
+        width: 100%;
+    }
+
+#heading{
+    margin-bottom: 20px;
+}
+    #logo{
+        margin: 0;
+        font-size: 40px;
+        color: white;
+    }
+
+.input-div{
+    margin: 0 auto;
+    height: 200px;
+    /* background-color: red; */
+}
+    #enter-year{
+        background-color: white;
+        font-size: larger;
+        border: 0px;
+        border-radius: 15px 0 0 15px;
+        padding: 5px 15px;
+    }
+    select{
+        font-size: larger;
+        border: 0px;
+        border-radius: 0 15px 15px 0;
+        padding: 5px 15px;
+        background-color: #A7D397;
+    }
+    #generate-button{
+        margin-top: 30px;
+        font-size: larger;
+        background-color: #A7D397;
+        border: 0px;
+        padding: 10px;
+        border-radius: 25px;
+    }
+    #generate-button:hover{
+        background-color: #8abd77;
+    }
+
+.Calendar-div{
+    margin: 0 auto;
+    /* background-color: blue; */
+    height: 1200px;
+}
+    .calendar{
+        width: 400px;
+        height: 500px;
+        margin: 0 auto;
+        background-color: white;
+        display: flex;
+        flex-direction: column;
+    }
+        #month-name{
+            align-self: center;
+            text-transform: uppercase;
+            letter-spacing: 10px;
+            margin-top: 50px;
+        }
+        .week{
+            margin-top: 20px;
+        }
+        .week, .dates{
+            width: 80%;
+            align-self: center;
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            /* column-gap: 1px; */
+        }
+            .day, .date{
+                aspect-ratio: 1/1;
+                /* border: 1px solid black; */
+                border-radius: 50%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+                .date:hover{
+                    background-color: rgb(233, 233, 233);
+                }
+
+            .red{
+                color: red;
+            }
+            .date{
+                /* padding: 12px; */
+                text-align: center;
+            }
+
+.change-month{
+    display: flex;
+    justify-content: space-between;
+}
+    .control-button{
+        align-self: center;
+        border: 0px;
+        border-radius: 50%;
+        margin: 20px;
+        margin-top: 50px;
+        height: 50px;
+        width: 50px;
+        background-color: white;
+    }
+    .control-button:hover{
+        background-color: rgb(233, 233, 233);
+    }
